@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-heading: "Manrope", sans-serif;
+  --font-accent: "DM Sans", sans-serif;
+
+  --color-aquatic: #087FA8;
+  --color-aquatic-dark: #06698b;
+  --color-aquatic-light: #159cd1;
+  --color-ocean: #073B57;
+  --color-ocean-dark: #042436;
+  --color-turquoise: #21B4C5;
+  --color-turquoise-light: #42c8d8;
+  --color-brandgreen: #1BAF8C;
+  --color-brandgreen-dark: #148b6f;
+  --color-iceblue: #EAF7FA;
+  --color-iceblue-hover: #ddf2f6;
+  --color-lightneutral: #F7FAFB;
+  --color-darktext: #152B36;
+  --color-darktext-muted: #4A6370;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: var(--color-darktext);
+    background-color: #FFFFFF;
+  }
+
+  body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom refined scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7FAFB;
+}
+::-webkit-scrollbar-thumb {
+  background: #B6D9E4;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #087FA8;
+}
+
+/* Luxury architectural image treatment */
+.img-editorial {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-editorial:hover {
+  transform: scale(1.03);
+}
