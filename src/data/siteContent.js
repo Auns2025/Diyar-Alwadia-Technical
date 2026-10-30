@@ -23,10 +23,10 @@ export const siteConfig = {
   
   // Official verified contact & WhatsApp number
   contact: {
-    whatsappNumber: "923022825777",
-    whatsappDisplay: "+92 302 2825777",
-    phonePlaceholder: "+92 302 2825777",
-    phoneDisplay: "+92 302 2825777",
+    whatsappNumber: "971506875352",
+    whatsappDisplay: "+971506875352",
+    phonePlaceholder: "+971506875352",
+    phoneDisplay: "+971506875352",
     email: "info@diyaralwadiya.com",
     address: "Dubai & Across UAE, United Arab Emirates",
     workingHours: "Monday – Saturday: 8:00 AM – 6:00 PM",
@@ -272,7 +272,7 @@ export const siteConfig = {
     },
     {
       q: "How can I request an initial site inspection and cost estimate?",
-      a: "You can submit a consultation request through our website, or directly message our technical hotline on WhatsApp at +92 302 2825777 to arrange a site evaluation."
+      a: "You can submit a consultation request through our website, or directly message our technical hotline on WhatsApp at +971506875352 to arrange a site evaluation."
     }
   ]
 };

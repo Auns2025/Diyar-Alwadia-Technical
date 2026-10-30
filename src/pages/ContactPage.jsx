@@ -240,7 +240,7 @@ export default function ContactPage({ onOpenConsultation }) {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#1BAF8C] hover:bg-[#169a7b] text-white text-xs uppercase font-bold tracking-wider transition-all shadow-md shadow-[#1BAF8C]/20"
               >
                 <MessageCircle className="w-4 h-4" />
-                Open WhatsApp (+92 302 2825777)
+                Open WhatsApp (+971506875352)
               </a>
             </div>
           </div>

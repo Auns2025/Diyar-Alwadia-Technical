@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, ArrowRight, Phone, Mail, MessageCircle } from 'lucide-react';
+import { X, CheckCircle, ArrowRight, Mail, MessageCircle } from 'lucide-react';
 import { siteConfig } from '../data/siteContent';
 
 export default function ConsultationModal({ isOpen, onClose, initialService = "" }) {
@@ -13,6 +13,9 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Target WhatsApp Number
+  const targetWhatsappNumber = "971506875352";
 
   useEffect(() => {
     if (initialService) {
@@ -28,17 +31,34 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Dynamic WhatsApp Message Generator
+  const generateWaUrl = () => {
+    const textMessage = `Hello Diyar Alwadiya, I would like to consult regarding your services.
+
+📌 *Inquiry Details:*
+• *Name:* ${formData.name || 'N/A'}
+• *Phone:* ${formData.phone || 'N/A'}
+• *Email:* ${formData.email || 'N/A'}
+• *Emirate:* ${formData.emirate || 'N/A'}
+• *Service:* ${formData.service || 'N/A'}
+• *Message/Details:* ${formData.message || 'None'}`;
+
+    return `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(textMessage)}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    
+    // Automatically open WhatsApp in new tab with form data
+    const waLink = generateWaUrl();
+    window.open(waLink, '_blank');
   };
 
   const handleReset = () => {
     setSubmitted(false);
     onClose();
   };
-
-  const waUrl = `https://wa.me/${siteConfig.contact.whatsappNumber}?text=${encodeURIComponent(`Hello Diyar Alwadiya, I would like to consult regarding ${formData.service || 'your technical services'}. Name: ${formData.name || 'Client'}.`)}`;
 
   if (!isOpen) return null;
 
@@ -88,18 +108,18 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
                     Thank You for Your Consultation Request
                   </h3>
                   <p className="text-[#4A6370] text-sm max-w-md mx-auto leading-relaxed">
-                    Our technical engineering team will review your specifications and contact you within one business day.
+                    Our technical engineering team will review your specifications and contact you shortly on WhatsApp.
                   </p>
                 </div>
 
                 <div className="pt-6 border-t border-[#EAF7FA] flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-[#4A6370]">
                   <a
-                    href={waUrl}
+                    href={generateWaUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 text-[#25D366] font-semibold hover:underline"
                   >
-                    <MessageCircle className="w-4 h-4 fill-[#25D366]" /> WhatsApp: {siteConfig.contact.whatsappDisplay}
+                    <MessageCircle className="w-4 h-4 fill-[#25D366]" /> WhatsApp: +{targetWhatsappNumber}
                   </a>
                   <span className="flex items-center gap-1.5">
                     <Mail className="w-3.5 h-3.5 text-[#087FA8]" /> {siteConfig.contact.email}
@@ -114,13 +134,13 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
                     Return to Website
                   </button>
                   <a
-                    href={waUrl}
+                    href={generateWaUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-[#25D366] hover:bg-[#20ba59] transition-colors"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
-                    <span>Chat on WhatsApp</span>
+                    <span>Re-open WhatsApp</span>
                   </a>
                 </div>
               </div>
@@ -163,7 +183,7 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+92 302 2825777"
+                        placeholder="+971506875352"
                         className="w-full px-3.5 py-2.5 text-sm bg-[#F7FAFB] border border-[#EAF7FA] rounded-none focus:outline-none focus:border-[#087FA8] transition-colors"
                       />
                     </div>
@@ -241,13 +261,13 @@ export default function ConsultationModal({ isOpen, onClose, initialService = ""
                     <div className="mt-3 flex items-center justify-center gap-3 text-xs text-[#4A6370]">
                       <span>Prefer WhatsApp?</span>
                       <a
-                        href={waUrl}
+                        href={generateWaUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-[#25D366] font-bold hover:underline"
                       >
                         <MessageCircle className="w-3.5 h-3.5 fill-[#25D366]" />
-                        <span>Chat on {siteConfig.contact.whatsappDisplay}</span>
+                        <span>Chat on +{targetWhatsappNumber}</span>
                       </a>
                     </div>
                   </div>
